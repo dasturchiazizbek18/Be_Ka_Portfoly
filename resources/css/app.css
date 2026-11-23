@@ -1,0 +1,310 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none !important;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        background-color: #090b0f;
+        color: #f1f5f9;
+        color-scheme: dark;
+    }
+
+    body {
+        background-color: #090b0f;
+        color: #e2e8f0;
+        overflow-x: hidden;
+    }
+
+    ::selection {
+        background-color: rgba(94, 240, 200, 0.28);
+        color: #ffffff;
+    }
+}
+
+/* Signature ambient obsidian + mint glow canvas */
+.studio-canvas {
+    background-color: #090b0f;
+    background-image:
+        radial-gradient(65% 48% at 78% 12%, rgba(94, 240, 200, 0.11), transparent 64%),
+        radial-gradient(45% 38% at 10% 42%, rgba(52, 211, 153, 0.06), transparent 62%),
+        radial-gradient(50% 40% at 88% 76%, rgba(94, 240, 200, 0.07), transparent 65%);
+}
+
+/* Subtle camera viewfinder grid overlay */
+.viewfinder-grid {
+    background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 33.333% 33.333%;
+}
+
+/* Glass cards & interactive glow */
+.studio-card {
+    background: linear-gradient(180deg, rgba(20, 25, 35, 0.88) 0%, rgba(13, 17, 24, 0.94) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.075);
+    backdrop-filter: blur(12px);
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.studio-card:hover {
+    border-color: rgba(94, 240, 200, 0.28);
+    box-shadow: 0 20px 50px -24px rgba(0, 0, 0, 0.85), 0 0 36px -18px rgba(94, 240, 200, 0.2);
+}
+
+/* Primary mint CTA button */
+.btn-mint {
+    background-color: #5ef0c8;
+    color: #07100e;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-mint:hover {
+    background-color: #7df6d5;
+    box-shadow: 0 0 32px -4px rgba(94, 240, 200, 0.45);
+    transform: translateY(-1px);
+}
+
+/* Secondary dark outlined CTA button */
+.btn-ghost {
+    background-color: rgba(17, 22, 31, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    color: #f8fafc;
+    font-weight: 500;
+    transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-ghost:hover {
+    border-color: rgba(94, 240, 200, 0.42);
+    background-color: rgba(24, 31, 44, 0.95);
+    transform: translateY(-1px);
+}
+
+/* Dark form inputs */
+.studio-input {
+    background-color: rgba(11, 14, 20, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #f1f5f9;
+    border-radius: 0.75rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.studio-input:focus {
+    outline: none;
+    border-color: #5ef0c8;
+    box-shadow: 0 0 0 3px rgba(94, 240, 200, 0.16);
+}
+
+.studio-input::placeholder {
+    color: #64748b;
+}
+
+/* Viewfinder corner brackets for logo slot & video frame */
+.corner-frame {
+    position: relative;
+}
+
+.corner-frame::before,
+.corner-frame::after {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+    border-color: rgba(94, 240, 200, 0.65);
+}
+
+.corner-frame::before {
+    top: -1px;
+    left: -1px;
+    border-top: 2px solid rgba(94, 240, 200, 0.65);
+    border-left: 2px solid rgba(94, 240, 200, 0.65);
+    border-top-left-radius: 4px;
+}
+
+.corner-frame::after {
+    bottom: -1px;
+    right: -1px;
+    border-bottom: 2px solid rgba(94, 240, 200, 0.65);
+    border-right: 2px solid rgba(94, 240, 200, 0.65);
+    border-bottom-right-radius: 4px;
+}
+
+/* Native <dialog> modal scroll-lock & dark backdrop (modern-web-guidance) */
+dialog:modal {
+    overscroll-behavior: contain;
+    max-width: min(92vw, 900px);
+    max-height: 90vh;
+    background: transparent;
+    padding: 0;
+    border: none;
+    color: #f8fafc;
+}
+
+dialog::backdrop {
+    background: rgba(5, 7, 11, 0.84);
+    backdrop-filter: blur(8px);
+    overflow: hidden;
+    overscroll-behavior: contain;
+}
+
+/* Subtle pulsing REC dot */
+@keyframes recPulse {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(94, 240, 200, 0.55);
+    }
+    50% {
+        opacity: 0.6;
+        box-shadow: 0 0 0 6px rgba(94, 240, 200, 0);
+    }
+}
+
+.rec-dot {
+    animation: recPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Seamless bottom fade for cutout hero portrait */
+.hero-cutout-mask {
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 76%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 76%, transparent 100%);
+}
+
+/* Mobile 1-to-1 mini-desktop mode: taller, crisp & readable Header on iPhone */
+#site-scale-root.is-mobile-scaled header > div {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    gap: 1.25rem;
+}
+
+#site-scale-root.is-mobile-scaled header nav {
+    gap: 1.35rem;
+    font-size: 1.125rem;
+    font-weight: 500;
+}
+
+#site-scale-root.is-mobile-scaled header [data-logo-slot="navbar"] {
+    gap: 0.875rem;
+}
+
+#site-scale-root.is-mobile-scaled header [data-logo-slot="navbar"] img {
+    width: 4rem;
+    height: 4rem;
+}
+
+#site-scale-root.is-mobile-scaled header [data-logo-slot="navbar"] .font-display {
+    font-size: 1.5rem;
+}
+
+#site-scale-root.is-mobile-scaled header [data-logo-slot="navbar"] .font-mono {
+    font-size: 0.8rem;
+}
+
+#site-scale-root.is-mobile-scaled header [role="group"] a {
+    font-size: 0.95rem;
+    padding: 0.55rem 0.85rem;
+}
+
+#site-scale-root.is-mobile-scaled header > div > div:last-child > a {
+    font-size: 0.95rem;
+    padding: 0.55rem 0.95rem;
+}
+
+#site-scale-root.is-mobile-scaled #hero-section {
+    display: flex;
+    align-items: flex-end;
+    padding-top: 3.5rem;
+}
+
+#site-scale-root.is-mobile-scaled #hero-grid {
+    gap: 1rem;
+}
+
+#site-scale-root.is-mobile-scaled #hero-text-col {
+    align-self: center;
+    padding-top: 1.5rem;
+    padding-bottom: 3rem;
+}
+
+#site-scale-root.is-mobile-scaled #hero-text-col h1 {
+    font-size: 4.35rem;
+}
+
+#site-scale-root.is-mobile-scaled #hero-text-col > div > p {
+    font-size: 2rem;
+    margin-top: 0.75rem;
+}
+
+#site-scale-root.is-mobile-scaled #hero-portrait-wrap {
+    width: 475px;
+    max-width: none;
+    margin-right: -12px;
+}
+
+#site-scale-root.is-mobile-scaled #hero-portrait-img {
+    width: 475px;
+    max-width: none;
+}
+
+#site-scale-root.is-mobile-scaled #hero-portrait-glow {
+    width: 460px;
+    height: 460px;
+}
+
+/* Comfortable enlarged scale on desktop Admin Panel; crisp compact scale on mobile */
+html.admin-html {
+    font-size: 14.5px;
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+@media (min-width: 1024px) {
+    html.admin-html {
+        font-size: 19.5px;
+    }
+}
+
+.admin-shell .studio-card {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.admin-shell .studio-input {
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+    font-size: 0.92rem;
+}
+
+.admin-shell label {
+    font-size: 0.82rem;
+}
+
+/* Smooth reveal animation */
+.reveal-item {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal-item {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+    .rec-dot {
+        animation: none;
+    }
+}
